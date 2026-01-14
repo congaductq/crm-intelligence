@@ -36,14 +36,37 @@ export async function POST(req: NextRequest) {
         const { messages } = await req.json();
 
         // 1. Setup MCP Client Transport
-        // Get the correct path to mcp-server dist
-        // On Vercel, __dirname resolves to the built function directory
-        const mcpServerPath = path.resolve(
-            path.join(process.cwd(), ".."),
-            "mcp-server/dist/index.js"
+        // On Vercel, we need to use absolute paths
+        // process.cwd() returns /var/task on Vercel
+        // We need to go up to find mcp-server
+        const mcpServerPath = path.join(
+            process.cwd(),
+            "..",
+            "..",
+            "mcp-server",
+            "dist",
+            "index.js"
         );
 
-        console.log(`[MCP] Attempting to spawn: ${mcpServerPath}`);
+        console.log(`[MCP] Current working directory: ${process.cwd()}`);
+        console.log(`[MCP] Attempting to spawn MCP server from: ${mcpServerPath}`);
+
+        // Check if file exists
+        const fs = await import("fs/promises");
+        try {
+            await fs.access(mcpServerPath);
+            console.log(`[MCP] File exists: ${mcpServerPath}`);
+        } catch {
+            console.error(`[MCP] File NOT found at: ${mcpServerPath}`);
+            console.log(`[MCP] Listing parent directory...`);
+            try {
+                const parentDir = path.dirname(mcpServerPath);
+                const files = await fs.readdir(parentDir);
+                console.log(`[MCP] Files in ${parentDir}:`, files);
+            } catch (e) {
+                console.error(`[MCP] Could not list parent dir:`, e);
+            }
+        }
 
         const transport = new StdioClientTransport({
             command: "node",

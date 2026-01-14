@@ -1,0 +1,162 @@
+
+> web-client@0.1.0 dev
+> next dev
+
+⚠ Port 3000 is in use by process 89913, using available port 3001 instead.
+▲ Next.js 16.1.1 (Turbopack)
+- Local:         http://localhost:3001
+- Network:       http://192.168.0.188:3001
+- Environments: .env
+
+✓ Starting...
+✓ Ready in 537ms
+ GET / 200 in 434ms (compile: 355ms, render: 78ms)
+CRM Intelligence MCP Server running...
+[MCP Tool Result] get_store_info Source: MongoDB_FALLBACK
+[MCP Tool Result] get_store_info Source: MongoDB_FALLBACK
+ POST /api/chat 200 in 19.0s (compile: 159ms, render: 18.8s)
+ GET / 200 in 75ms (compile: 20ms, render: 54ms)
+CRM Intelligence MCP Server (v1.0.1) running...
+[MCP Tool Result] get_store_info Source: Unknown
+[MCP Tool Result] get_store_info Source: MongoDB_STORE_FALLBACK
+[MCP Tool Result] get_store_info Source: MongoDB_STORE_FALLBACK
+[MCP Tool Result] get_store_info Source: MongoDB_STORE_FALLBACK
+[MCP Tool Result] get_store_info Source: MongoDB_STORE_FALLBACK
+ POST /api/chat 200 in 24.2s (compile: 3ms, render: 24.2s)
+✓ Compiled in 339ms
+CRM Intelligence MCP Server (v1.0.1) running...
+[MCP Tool Result] get_store_info Result: {
+  "error": "Store not found",
+  "matching_logs": [
+    "RESOLVER_INPUT: \"Profile 3 - Greenline (Dispensary Canabis)\"",
+    "Phase 2: Attempting Name match logic...",
+    "Tier 1 (Fuzzy): ilike %Profile%3%Greenline%Dispensary%Canabis%%",
+    "Significant words: [Profile, Greenline, Dispensary, Canabis]",
+    "Tier 2 (Words x3): ilike %Profile%Greenline%Dispensary%",
+    "Tier 2 (Words x2): ilike %Profile%Greenline%",
+    "Supabase resolution failed. Falling back to MongoDB search...",
+    "RESOLUTION FAILED: Store not found in Supabase or MongoDB."
+  ]
+}
+[MCP Tool Result] get_store_info Result: {
+  "error": "Store not found",
+  "matching_logs": [
+    "RESOLVER_INPUT: \"Profile 3 - Greenline (Dispensary Canabis Store)\"",
+    "Phase 2: Attempting Name match logic...",
+    "Tier 1 (Fuzzy): ilike %Profile%3%Greenline%Dispensary%Canabis%Store%%",
+    "Significant words: [Profile, Greenline, Dispensary, Canabis]",
+    "Tier 2 (Words x3): ilike %Profile%Greenline%Dispensary%",
+    "Tier 2 (Words x2): ilike %Profile%Greenline%",
+    "Supabase resolution failed. Falling back to MongoDB search...",
+    "RESOLUTION FAILED: Store not found in Supabase or MongoDB."
+  ]
+}
+[MCP Tool Result] get_store_info Result: {
+  "source": "MongoDB_STORE_FALLBACK",
+  "matching_logs": [
+    "RESOLVER_INPUT: \"6699de62ebacdc26c028972e\"",
+    "Phase 1: Attempting exact ID match for: 6699de62ebacdc26c028972e",
+    "Phase 2: Attempting Name match logic...",
+    "Tier 1 (Fuzzy): ilike %6699de62ebacdc26c028972e%",
+    "Significant words: [6699de62ebacdc26c028972e]",
+    "Tier 2 (Words x1): ilike %6699de62ebacdc26c028972e%",
+    "Supabase resolution failed. Falling back to MongoDB search...",
+    "RESOLVED: Found by ID in MongoDB.",
+    "Supabase detail fetch error for ID 6699de62ebacdc26c028972e: TypeError: fetch failed",
+    "Details missing in Supabase for ID 6699de62ebacdc26c028972e. Fetching from MongoDB..."
+  ],
+  "store": {
+    "store_id": "6699de62ebacdc26c028972e",
+    "store_name": "Profile 3 - Greenline (Dispensary Canabis Store",
+    "organization_id": "6699dd07dbb7ba28126cb176"
+  }
+}
+ POST /api/chat 200 in 15.1s (compile: 117ms, render: 15.0s)
+CRM Intelligence MCP Server (v1.0.1) running...
+[MCP Tool Result] get_store_info Result: {
+  "source": "MongoDB_STORE_FALLBACK",
+  "matching_logs": [
+    "RESOLVER_INPUT: \"Geek store - Link on Mar 3\"",
+    "Phase 2: Attempting Name match logic...",
+    "Tier 1 (Fuzzy): ilike %Geek%store%Link%on%Mar%3%",
+    "Significant words: [Geek, Link, Mar]",
+    "Tier 2 (Words x3): ilike %Geek%Link%Mar%",
+    "Tier 2 (Words x2): ilike %Geek%Link%",
+    "Supabase resolution failed. Falling back to MongoDB search...",
+    "RESOLVED: Found by name in MongoDB.",
+    "Supabase detail fetch error for ID 62202a3c1944fda7dc4eb830: TypeError: fetch failed",
+    "Details missing in Supabase for ID 62202a3c1944fda7dc4eb830. Fetching from MongoDB..."
+  ],
+  "store": {
+    "store_id": "62202a3c1944fda7dc4eb830",
+    "store_name": "Geek store - Link on Mar 3",
+    "organization_id": "61ef82a0970ebce69acec53c"
+  }
+}
+ POST /api/chat 200 in 11.8s (compile: 4ms, render: 11.8s)
+  Reload env: .env
+ GET / 200 in 64ms (compile: 47ms, render: 17ms)
+  Reload env: .env
+ GET / 200 in 43ms (compile: 28ms, render: 15ms)
+ GET / 200 in 119ms (compile: 14ms, render: 105ms)
+ GET / 200 in 32ms (compile: 5ms, render: 27ms)
+ GET / 200 in 16ms (compile: 1767µs, render: 15ms)
+Warning: Using Supabase anon key; consider setting SUPABASE_SERVICE_ROLE_KEY for server.
+SUPABASE_URL looks like a placeholder or is missing. Set SUPABASE_URL to your project's URL (e.g., https://<project>.supabase.co).
+Supabase URL: https://your-project.supabase.co
+CRM Intelligence MCP Server (v1.0.1) running...
+[MCP Tool Result] get_store_info Result: {
+  "source": "MongoDB_STORE_FALLBACK",
+  "matching_logs": [
+    "RESOLVER_INPUT: \"6699de62ebacdc26c028972e\"",
+    "Phase 1: Attempting exact ID match for: 6699de62ebacdc26c028972e",
+    "Supabase ID lookup error: TypeError: fetch failed",
+    "Phase 2: Attempting Name match logic...",
+    "Tier 1 (Fuzzy): ilike %6699de62ebacdc26c028972e%",
+    "Supabase fuzzy lookup error: TypeError: fetch failed",
+    "Significant words: [6699de62ebacdc26c028972e]",
+    "Tier 2 (Words x1): ilike %6699de62ebacdc26c028972e%",
+    "Supabase tier2 lookup error: TypeError: fetch failed",
+    "Supabase resolution failed. Falling back to MongoDB search...",
+    "RESOLVED: Found by ID in MongoDB.",
+    "Supabase detail fetch error for ID 6699de62ebacdc26c028972e: TypeError: fetch failed",
+    "Details missing in Supabase for ID 6699de62ebacdc26c028972e. Fetching from MongoDB..."
+  ],
+  "store": {
+    "store_id": "6699de62ebacdc26c028972e",
+    "store_name": "Profile 3 - Greenline (Dispensary Canabis Store",
+    "organization_id": "6699dd07dbb7ba28126cb176"
+  }
+}
+ POST /api/chat 200 in 11.0s (compile: 154ms, render: 10.9s)
+Using Supabase service role key for server-side requests.
+SUPABASE_URL looks like a placeholder or is missing. Set SUPABASE_URL to your project's URL (e.g., https://<project>.supabase.co).
+Supabase URL: https://your-project.supabase.co
+CRM Intelligence MCP Server (v1.0.1) running...
+[MCP Tool Result] get_store_info Result: {
+  "source": "MongoDB_STORE_FALLBACK",
+  "matching_logs": [
+    "RESOLVER_INPUT: \"6699de62ebacdc26c028972e\"",
+    "Phase 1: Attempting exact ID match for: 6699de62ebacdc26c028972e",
+    "Supabase ID lookup error: TypeError: fetch failed",
+    "Phase 2: Attempting Name match logic...",
+    "Tier 1 (Fuzzy): ilike %6699de62ebacdc26c028972e%",
+    "Supabase fuzzy lookup error: TypeError: fetch failed",
+    "Significant words: [6699de62ebacdc26c028972e]",
+    "Tier 2 (Words x1): ilike %6699de62ebacdc26c028972e%",
+    "Supabase tier2 lookup error: TypeError: fetch failed",
+    "Supabase resolution failed. Falling back to MongoDB search...",
+    "RESOLVED: Found by ID in MongoDB.",
+    "Supabase detail fetch error for ID 6699de62ebacdc26c028972e: TypeError: fetch failed",
+    "Details missing in Supabase for ID 6699de62ebacdc26c028972e. Fetching from MongoDB..."
+  ],
+  "store": {
+    "store_id": "6699de62ebacdc26c028972e",
+    "store_name": "Profile 3 - Greenline (Dispensary Canabis Store",
+    "organization_id": "6699dd07dbb7ba28126cb176"
+  }
+}
+ POST /api/chat 200 in 12.1s (compile: 115ms, render: 12.0s)
+ GET / 200 in 57ms (compile: 8ms, render: 49ms)
+ GET / 200 in 72ms (compile: 6ms, render: 65ms)
+ GET / 200 in 59ms (compile: 7ms, render: 52ms)

@@ -28,6 +28,7 @@ export async function createMCPClient() {
         SUPABASE_URL: process.env.SUPABASE_URL || "❌ MISSING",
         SUPABASE_KEY: process.env.SUPABASE_KEY ? `${process.env.SUPABASE_KEY.substring(0, 20)}...` : "❌ MISSING",
         NODE_ENV: process.env.NODE_ENV,
+        NODE_PATH: path.resolve(process.cwd(), "node_modules"),
     });
 
     // 1. Verify MCP server exists

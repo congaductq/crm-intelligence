@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "build": "cd mcp-server && npm run build && cd ../web-client && npm run build",
-    "dev": "concurrently \"cd mcp-server && npm run dev\" \"cd web-client && npm run dev\"",
+    "dev": "cd web-client && npm run dev",
     "start": "cd web-client && npm run start",
     "lint": "cd web-client && npm run lint",
     "install-all": "npm install && cd mcp-server && npm install && cd ../web-client && npm install"

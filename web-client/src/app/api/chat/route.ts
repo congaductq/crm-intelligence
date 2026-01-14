@@ -1,9 +1,8 @@
 import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
-import { Client } from "@modelcontextprotocol/sdk/client/index.js";
-import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
+import { NextRequest } from "next/server";
 import path from "path";
 import { fileURLToPath } from "url";
-import { NextRequest } from "next/server";
+import { createMCPClient } from "../../../../lib/mcp-client";
 
 // Lazy initialization of Gemini client
 let genAI: GoogleGenerativeAI | null = null;
@@ -35,63 +34,7 @@ export async function POST(req: NextRequest) {
     try {
         const { messages } = await req.json();
 
-        // 1. Setup MCP Client Transport
-        // On Vercel, we need to use absolute paths
-        // process.cwd() returns /var/task on Vercel
-        // We need to go up to find mcp-server
-        const mcpServerPath = path.join(
-            process.cwd(),
-            "..",
-            "..",
-            "mcp-server",
-            "dist",
-            "index.js"
-        );
-
-        console.log(`[MCP] Current working directory: ${process.cwd()}`);
-        console.log(`[MCP] Attempting to spawn MCP server from: ${mcpServerPath}`);
-
-        // Check if file exists
-        const fs = await import("fs/promises");
-        try {
-            await fs.access(mcpServerPath);
-            console.log(`[MCP] File exists: ${mcpServerPath}`);
-        } catch {
-            console.error(`[MCP] File NOT found at: ${mcpServerPath}`);
-            console.log(`[MCP] Listing parent directory...`);
-            try {
-                const parentDir = path.dirname(mcpServerPath);
-                const files = await fs.readdir(parentDir);
-                console.log(`[MCP] Files in ${parentDir}:`, files);
-            } catch (e) {
-                console.error(`[MCP] Could not list parent dir:`, e);
-            }
-        }
-
-        const transport = new StdioClientTransport({
-            command: "node",
-            args: [mcpServerPath],
-            env: {
-                ...process.env,
-                MONGO_URI: process.env.MONGO_URI!,
-                SUPABASE_URL: process.env.SUPABASE_URL!,
-                SUPABASE_KEY: process.env.SUPABASE_KEY!,
-            },
-        });
-
-        const mcpClient = new Client(
-            { name: "nextjs-host", version: "1.0.0" },
-            { capabilities: {} }
-        );
-
-        try {
-            await mcpClient.connect(transport);
-        } catch (connectError: any) {
-            const errorMsg = connectError instanceof Error ? connectError.message : String(connectError);
-            console.error(`[MCP] Failed to connect to MCP server at ${mcpServerPath}:`, errorMsg);
-            console.error(`[MCP] Process cwd: ${process.cwd()}`);
-            throw new Error(`MCP Server connection failed: ${errorMsg}. Path: ${mcpServerPath}`);
-        }
+        const mcpClient = await createMCPClient();
 
         // 2. Fetch Tools from MCP Server and convert to Gemini format
         const toolsList = await mcpClient.listTools();

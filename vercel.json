@@ -1,5 +1,9 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": "web-client/.next",
-  "installCommand": "npm install"
+  "installCommand": "npm install",
+  "includeFiles": [
+    "mcp-server/dist/**",
+    "mcp-server/node_modules/**"
+  ]
 }

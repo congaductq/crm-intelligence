@@ -2,6 +2,7 @@ import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 import { StdioClientTransport } from "@modelcontextprotocol/sdk/client/stdio.js";
 import path from "path";
+import { fileURLToPath } from "url";
 import { NextRequest } from "next/server";
 
 // Lazy initialization of Gemini client
@@ -35,11 +36,14 @@ export async function POST(req: NextRequest) {
         const { messages } = await req.json();
 
         // 1. Setup MCP Client Transport
-        // Point to the MCP server compiled file
+        // Get the correct path to mcp-server dist
+        // On Vercel, __dirname resolves to the built function directory
         const mcpServerPath = path.resolve(
-            process.cwd(),
-            "../mcp-server/dist/index.js"
+            path.join(process.cwd(), ".."),
+            "mcp-server/dist/index.js"
         );
+
+        console.log(`[MCP] Attempting to spawn: ${mcpServerPath}`);
 
         const transport = new StdioClientTransport({
             command: "node",
@@ -49,7 +53,6 @@ export async function POST(req: NextRequest) {
                 MONGO_URI: process.env.MONGO_URI!,
                 SUPABASE_URL: process.env.SUPABASE_URL!,
                 SUPABASE_KEY: process.env.SUPABASE_KEY!,
-
             },
         });
 
@@ -58,7 +61,14 @@ export async function POST(req: NextRequest) {
             { capabilities: {} }
         );
 
-        await mcpClient.connect(transport);
+        try {
+            await mcpClient.connect(transport);
+        } catch (connectError: any) {
+            const errorMsg = connectError instanceof Error ? connectError.message : String(connectError);
+            console.error(`[MCP] Failed to connect to MCP server at ${mcpServerPath}:`, errorMsg);
+            console.error(`[MCP] Process cwd: ${process.cwd()}`);
+            throw new Error(`MCP Server connection failed: ${errorMsg}. Path: ${mcpServerPath}`);
+        }
 
         // 2. Fetch Tools from MCP Server and convert to Gemini format
         const toolsList = await mcpClient.listTools();

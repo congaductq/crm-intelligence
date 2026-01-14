@@ -1,20 +1,40 @@
 {
-  "name": "crm-intelligence",
-  "version": "1.0.0",
-  "description": "CRM Intelligence Platform with AI-powered chat and MCP server",
+  "name": "web-client",
+  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "cd mcp-server && npm run build && cd ../web-client && npm run build",
-    "dev": "cd web-client && npm run dev",
-    "start": "cd web-client && npm run start",
-    "lint": "cd web-client && npm run lint",
-    "install-all": "npm install && cd mcp-server && npm install && cd ../web-client && npm install"
+    "dev": "next dev",
+    "build": "npm run build:mcp && next build",
+    "build:mcp": "cd mcp && tsc",
+    "start": "next start",
+    "lint": "eslint",
+    "clean": "rm -rf .next mcp/dist"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "@modelcontextprotocol/sdk": "^1.25.2",
+    "lucide-react": "^0.562.0",
+    "next": "16.1.1",
+    "openai": "^6.16.0",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-markdown": "^10.1.0",
+    "remark-gfm": "^4.0.1",
+    "@supabase/supabase-js": "^2.39.0",
+    "dotenv": "^16.3.1",
+    "mongodb": "^6.3.0",
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
-  },
-  "workspaces": [
-    "mcp-server",
-    "web-client"
-  ]
+    "concurrently": "^8.2.2",
+    "@tailwindcss/postcss": "^4",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.1",
+    "tailwindcss": "^4",
+    "typescript": "^5",
+    "tsx": "^4.7.0"
+  }
 }

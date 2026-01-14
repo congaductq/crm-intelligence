@@ -8,7 +8,7 @@ import { Client } from "@modelcontextprotocol/sdk/client/index.js";
 // Load .env from project root if not already loaded
 if (!process.env.MONGO_URI || !process.env.SUPABASE_URL || !process.env.SUPABASE_KEY) {
     console.log("Loading environment from root .env...");
-    const rootEnvPath = path.resolve(process.cwd(), "../.env");
+    const rootEnvPath = path.resolve(process.cwd(), ".env");
 
     if (fs.existsSync(rootEnvPath)) {
         dotenv.config({ path: rootEnvPath });
@@ -31,7 +31,7 @@ export async function createMCPClient() {
     });
 
     // 1. Verify MCP server exists
-    const mcpServerPath = path.resolve(process.cwd(), "../mcp-server/dist/index.js");
+    const mcpServerPath = path.resolve(process.cwd(), "mcp/dist/index.js");
 
     if (!fs.existsSync(mcpServerPath)) {
         throw new Error(

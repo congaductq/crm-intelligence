@@ -1,103 +1,36 @@
-# CRM Intelligence
+This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
-AI-powered sales analytics and product knowledge system built with MCP (Model Context Protocol), Next.js, MongoDB, and Supabase.
+## Getting Started
 
-## Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                        Next.js Frontend                          │
-│                     (MCP Host / Orchestrator)                    │
-│  ┌─────────────────────────────────────────────────────────────┐ │
-│  │                     Chat Interface                           │ │
-│  │  • Message input/display with Markdown rendering             │ │
-│  │  • Export chat history as .md                                │ │
-│  └─────────────────────────────────────────────────────────────┘ │
-│                              │                                    │
-│                    ┌─────────▼─────────┐                         │
-│                    │   /api/chat       │                         │
-│                    │   (API Route)     │                         │
-│                    └─────────┬─────────┘                         │
-└──────────────────────────────│───────────────────────────────────┘
-                               │ stdio
-                    ┌──────────▼──────────┐
-                    │     MCP Server      │
-                    │  (Tool Provider)    │
-                    ├─────────────────────┤
-                    │ get_sales_analytics │──────▶ MongoDB
-                    │ search_products     │──────▶ Supabase (vectors)
-                    │ add_product         │──────▶ Supabase
-                    └─────────────────────┘
-```
-
-## Prerequisites
-
-- Node.js 18+
-- MongoDB database with a `crm` database and `orders` collection
-- Supabase project with vector extension enabled
-- Gemini API key (Google AI Studio)
-
-
-## Database Setup
-
-### Supabase (Vector DB)
-
-Run this SQL in your Supabase SQL Editor:
-<no change to sql>
-
-### MongoDB
-<no change>
-
-## Installation
-
-1. **Install MCP Server dependencies:**
-```bash
-cd mcp-server
-npm install
-```
-
-2. **Install Web Client dependencies:**
-```bash
-cd web-client
-npm install
-```
-
-3. **Configure environment variables:**
-
-Create `mcp-server/.env`:
-```
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=your-supabase-anon-key
-GEMINI_API_KEY=your_gemini_key
-```
-
-Create `web-client/.env.local`:
-```
-GEMINI_API_KEY=your-gemini-key
-MONGO_URI=mongodb+srv://username:password@cluster.mongodb.net/?retryWrites=true&w=majority
-SUPABASE_URL=https://your-project.supabase.co
-SUPABASE_KEY=your-supabase-anon-key
-
-```
-
-## Running the Application
+First, run the development server:
 
 ```bash
-cd web-client
 npm run dev
+# or
+yarn dev
+# or
+pnpm dev
+# or
+bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-## Available Tools
-<no change>
+You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-## How It Works
+This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-1. **User sends message** → Frontend sends to `/api/chat`
-2. **API spawns MCP server** → Connects via stdio transport
-3. **Gemini reasons** → Decides which tools to call
-4. **MCP executes tools** → Queries MongoDB/Supabase
-5. **Gemini synthesizes** → Formats response with data
-6. **Frontend renders** → Displays Markdown response
+## Learn More
+
+To learn more about Next.js, take a look at the following resources:
+
+- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
+- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+
+You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+
+## Deploy on Vercel
+
+The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+
+Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.

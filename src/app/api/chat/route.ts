@@ -1,7 +1,5 @@
 import { GoogleGenerativeAI, SchemaType } from "@google/generative-ai";
 import { NextRequest } from "next/server";
-import path from "path";
-import { fileURLToPath } from "url";
 import { createMCPClient } from "../../../../lib/mcp-client";
 
 // Lazy initialization of Gemini client

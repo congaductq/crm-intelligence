@@ -6,21 +6,23 @@
         "esModuleInterop": true,
         "strict": false,
         "skipLibCheck": true,
-        "outDir": "./dist",
+        "outDir": "../server",
         "rootDir": "./src",
         "declaration": true,
         "noImplicitAny": false,
         "noImplicitThis": false,
         "noUnusedLocals": false,
         "noUnusedParameters": false,
-        "typeRoots": ["./node_modules/@types"]
+        "typeRoots": [
+            "./node_modules/@types"
+        ]
     },
     "include": [
         "src/**/*"
     ],
     "exclude": [
         "node_modules",
-        "dist"
+        "lib"
     ],
     "ts-node": {
         "compilerOptions": {

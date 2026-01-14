@@ -6,7 +6,7 @@
         "esModuleInterop": true,
         "strict": false,
         "skipLibCheck": true,
-        "outDir": "./dist",
+        "outDir": "../server",
         "rootDir": "./src",
         "declaration": true,
         "noImplicitAny": false,
@@ -22,7 +22,7 @@
     ],
     "exclude": [
         "node_modules",
-        "dist"
+        "../server"
     ],
     "ts-node": {
         "compilerOptions": {

@@ -2,12 +2,6 @@
   "buildCommand": "npm run build",
   "outputDirectory": "web-client/.next",
   "installCommand": "npm install",
-  "env": {
-    "GEMINI_API_KEY": "@gemini_api_key",
-    "MONGO_URI": "@mongo_uri",
-    "SUPABASE_URL": "@supabase_url",
-    "SUPABASE_KEY": "@supabase_key"
-  },
   "functions": {
     "web-client/src/app/api/**/*.ts": {
       "maxDuration": 60

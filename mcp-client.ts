@@ -31,7 +31,7 @@ export async function createMCPClient() {
     });
 
     // 1. Verify MCP server exists
-    const mcpServerPath = path.resolve(process.cwd(), "server/index.js");
+    const mcpServerPath = path.resolve(process.cwd(), "index.js");
 
     if (!fs.existsSync(mcpServerPath)) {
         throw new Error(

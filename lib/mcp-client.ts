@@ -31,7 +31,7 @@ export async function createMCPClient() {
     });
 
     // 1. Verify MCP server exists
-    const mcpServerPath = path.resolve(process.cwd(), "server/index.js");
+    const mcpServerPath = path.resolve(process.cwd(), "mcp/dist/index.js");
 
     if (!fs.existsSync(mcpServerPath)) {
         throw new Error(
@@ -71,6 +71,7 @@ export async function createMCPClient() {
             SUPABASE_URL: process.env.SUPABASE_URL!,
             SUPABASE_KEY: process.env.SUPABASE_KEY!,
             GEMINI_API_KEY: process.env.GEMINI_API_KEY || "",
+            NODE_PATH: path.resolve(process.cwd(), "node_modules"),
         },
     });
 

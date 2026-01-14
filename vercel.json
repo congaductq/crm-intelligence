@@ -1,9 +1,5 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".next",
-  "installCommand": "npm install",
-  "includeFiles": [
-    "dist/**",
-    "node_modules/**"
-  ]
+  "installCommand": "npm install"
 }

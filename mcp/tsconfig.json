@@ -6,7 +6,7 @@
         "esModuleInterop": true,
         "strict": false,
         "skipLibCheck": true,
-        "outDir": "../server",
+        "outDir": "..",
         "rootDir": "./src",
         "declaration": true,
         "noImplicitAny": false,
@@ -20,9 +20,7 @@
     "include": [
         "src/index.ts"
     ],
-    "exclude": [
-        "../server"
-    ],
+    "exclude": [],
     "ts-node": {
         "compilerOptions": {
             "module": "commonjs"
